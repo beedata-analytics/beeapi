@@ -19,7 +19,7 @@ Beedata Analytics API client
 
     $ python -m beeapi load-measures-from-csv --help
 
-    $ python -m beeapi load-measures-from-csv --config config.json --csv quartihoraries.csv
+    $ python -m beeapi load-measures-from-csv --config config.json --csv tests/data/measures.sample.csv
 
 
 ## Library usage

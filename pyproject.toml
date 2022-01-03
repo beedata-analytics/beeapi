@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "beeapi"
-version = "0.1.0"
+version = "0.2.0"
 description = "Beedata Analytics API client."
 authors = ["Beedata Analytics <info@beedataanalytics.com>"]
 license = "GNU General Public License v3.0"

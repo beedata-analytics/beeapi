@@ -12,7 +12,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 urllib3.util.ssl_.DEFAULT_CIPHERS = "DEFAULT:@SECLEVEL=1"
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
