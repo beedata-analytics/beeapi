@@ -1,0 +1,18 @@
+{
+	"beedata": {
+		"company_id": 1234567890,
+		"auth": {
+			"username": "username",
+			"password": "password",
+			"cert_file": "cert/1234567890.crt",
+			"key_file": "cert/1234567890.key"
+		},
+		"endpoints": {
+			"contracts": "v1/contracts",
+			"measures": "v1/amon_measures"
+		},
+		"base_url_dev": "https://api-dev.beedataanalytics.com/",
+		"base_url": "https://api.beedataanalytics.com/",
+		"timezone": "Europe/Madrid"
+	}
+}
