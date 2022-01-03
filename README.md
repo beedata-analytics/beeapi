@@ -9,9 +9,7 @@ Beedata Analytics API client
 
 ## Installation
 
-```bash
-pip install git+https://github.com/beedata-analytics/beeapi.git
-```
+    $ pip install git+https://github.com/beedata-analytics/beeapi.git
 
 ## Command line client
 
