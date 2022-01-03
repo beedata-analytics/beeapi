@@ -13,7 +13,18 @@ Beedata Analytics API client
 pip install git+https://github.com/beedata-analytics/beeapi.git
 ```
 
-## Usage
+## Command line client
+
+    $ python -m beeapi --help
+
+### load-measures-from-csv
+
+    $ python -m beeapi load-measures-from-csv --help
+
+    $ python -m beeapi load-measures-from-csv --config config.json --csv quartihoraries.csv
+
+
+## Library usage
 
 ```python
 from beeapi import Client
