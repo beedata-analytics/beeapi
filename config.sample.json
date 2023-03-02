@@ -9,7 +9,8 @@
 		},
 		"endpoints": {
 			"contracts": "v1/contracts",
-			"measures": "v1/amon_measures"
+			"measures": "v1/amon_measures",
+			"community": "v1/community"
 		},
 		"base_url_dev": "https://api-dev.beedataanalytics.com/",
 		"base_url": "https://api.beedataanalytics.com/",

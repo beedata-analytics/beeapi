@@ -148,6 +148,19 @@ class Client(object):
 
         return response
 
+    def put_community(self, data):
+        response = request(
+            "POST",
+            self.base_url + self.endpoints["community"],
+            cookies=self.cookie or self._do_login(),
+            headers=self.http_headers,
+            cert=self.certificate,
+            verify=False,
+            data=dumps(data),
+        )
+
+        return response
+
     def upload_contract(self, data):
         """Function to decide when contract needs to be POST, PATCH or nothing
 
