@@ -11,7 +11,8 @@
 			"contracts": "v1/contracts",
 			"measures": "v1/amon_measures",
 			"community": "v1/community",
-			"tertiary": "/v1/tertiary_amon_measures"
+			"tertiary": "/v1/tertiary_amon_measures",
+			"tou": "/v1/residential_timeofuse_amon_measures"
 		},
 		"base_url_dev": "https://api-dev.beedataanalytics.com/",
 		"base_url": "https://api.beedataanalytics.com/",
