@@ -18,6 +18,7 @@ urllib3.util.ssl_.DEFAULT_CIPHERS = "DEFAULT:@SECLEVEL=1"
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 class Client(object):
@@ -55,6 +56,7 @@ class Client(object):
         request(
             "GET",
             self.base_url + "/authn/logout",
+            cookies=self.cookie,
             headers=self.http_headers,
             verify=False,
         )
