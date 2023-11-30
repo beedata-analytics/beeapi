@@ -1,9 +1,11 @@
+import functools
 import logging
 
 from datetime import datetime
 from datetime import timedelta
 from json import dumps
 
+import requests.exceptions
 import urllib3
 
 from requests import Session
@@ -21,7 +23,31 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
+
+
 class Client(object):
+    class Decorators(object):
+        @classmethod
+        def authorize_on_expire(cls, func):
+            @functools.wraps(func)
+            def wrapper(*args, **kwargs):
+                obj = args[0]
+                try:
+                    result = func(*args, **kwargs)
+                    result.raise_for_status()
+
+                except requests.exceptions.HTTPError as e:
+                    if e.response.status_code in [401, 500]:
+                        # token expired/unexpected server error => reset token and retry
+                        obj.cookie = None
+                        result = func(*args, **kwargs)
+                finally:
+                    return result
+
+            return wrapper
+
+
+
     def __init__(self, config):
         self.cookie = None
         self.config = config
@@ -61,6 +87,8 @@ class Client(object):
             verify=False,
         )
 
+
+    @Decorators.authorize_on_expire
     def _get_contract(self, contract_id):
 
         response = request(
@@ -77,6 +105,7 @@ class Client(object):
 
         return contract
 
+    @Decorators.authorize_on_expire
     def _send_data(self, data, data_type):
         s = Session()
         retries = Retry(
@@ -94,6 +123,7 @@ class Client(object):
 
         return response
 
+    @Decorators.authorize_on_expire
     def _modify_contract(self, data):
         response = request(
             "GET",
@@ -137,6 +167,7 @@ class Client(object):
 
         return response
 
+    @Decorators.authorize_on_expire
     def put_measures(self, data):
         response = request(
             "POST",
@@ -150,6 +181,7 @@ class Client(object):
 
         return response
 
+    @Decorators.authorize_on_expire
     def put_tertiary(self, data):
         response = request(
             "POST",
@@ -163,6 +195,7 @@ class Client(object):
 
         return response
 
+    @Decorators.authorize_on_expire
     def put_tou(self, data):
         response = request(
             "POST",
@@ -176,6 +209,7 @@ class Client(object):
 
         return response
 
+    @Decorators.authorize_on_expire
     def put_community(self, data):
         response = request(
             "POST",
@@ -189,6 +223,7 @@ class Client(object):
 
         return response
 
+    @Decorators.authorize_on_expire
     def upload_contract(self, data):
         """Function to decide when contract needs to be POST, PATCH or nothing
 
