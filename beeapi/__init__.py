@@ -32,6 +32,7 @@ class Client(object):
             @functools.wraps(func)
             def wrapper(*args, **kwargs):
                 obj = args[0]
+                result = None
                 try:
                     result = func(*args, **kwargs)
                     result.raise_for_status()
@@ -247,7 +248,7 @@ class Client(object):
                     % (data["document"]["contractId"], res.text)
                 )
             else:
-                logger.debug(
+                logger.info(
                     "PATCH contract [%s] successfully modified "
                     "on Beedata API." % (data["document"]["contractId"])
                 )
