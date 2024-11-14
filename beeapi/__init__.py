@@ -16,14 +16,10 @@ from urllib3.util.retry import Retry
 
 __version__ = "0.2.0"
 
-urllib3.util.ssl_.DEFAULT_CIPHERS = "DEFAULT:@SECLEVEL=1"
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
-
-
 
 class Client(object):
     class Decorators(object):
@@ -42,12 +38,10 @@ class Client(object):
                         # token expired/unexpected server error => reset token and retry
                         obj.cookie = None
                         result = func(*args, **kwargs)
-                finally:
-                    return result
+
+                return result
 
             return wrapper
-
-
 
     def __init__(self, config):
         self.cookie = None
