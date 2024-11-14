@@ -94,11 +94,8 @@ class Client(object):
             cert=self.certificate,
             verify=False,
         )
-        contract = None
-        if response.status_code == 200:
-            contract = response.json()
 
-        return contract
+        return response
 
     @Decorators.authorize_on_expire
     def _send_data(self, data, data_type):
@@ -218,7 +215,6 @@ class Client(object):
 
         return response
 
-    @Decorators.authorize_on_expire
     def upload_contract(self, data):
         """Function to decide when contract needs to be POST, PATCH or nothing
 
